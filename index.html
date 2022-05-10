@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/global.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Poppins:wght@400;500;600;800&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="/assets/main.js" defer></script>
+    <title>Rock, Paper, Scissors</title>
+</head>
+<body>
+    <header>
+    <h1>ROCK, PAPER, SCISSORS</h1>
+        <h2>Play a game against the computer. Choose your fighter wisely !</h2>
+        <p>Remember : rock beats scissors, paper beats rock, scissors beats paper !</p>
+    </header>
+
+    <main>
+        <div id="btn_select">
+            <button class="btn-choice" id="rock">ROCK</button>
+            <button class="btn-choice" id="paper">PAPER</button>
+            <button class="btn-choice" id="scissors">SCISSORS</button>
+        </div>
+
+        <div id="battle_display">
+            <div id="player_choice" class="render-box"></div>
+            <div id="versus" class="render-box"></div>
+            <div id="computer_choice" class="render-box"></div>
+        </div>
+        <div id="score">
+            <button id="restart">RESTART</button>
+            <button id="fight">FIGHT</button>
+            
+        </div>
+        <div id="victory_count">
+            <p id="victory_line">
+                And the winner is : 
+            </p>
+            <div class="scoreboard">
+                <div class="scoreboard-name">
+                    <p class="fighter-name">
+                        Player : 
+                    </p>
+                    <p class="computer-name">
+                        Computer : 
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+
+</body>
+</html>
