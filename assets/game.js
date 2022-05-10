@@ -1,41 +1,51 @@
+/* --------- DECLARATION DES VARIABLES ------------ */
+
+
+
 const buttons = document.querySelectorAll(".btn-choice");//select all the buttons elements
-var tableChoice = ["rock", "paper", "scissors"];
+const tableChoice = ["rock", "paper", "scissors"];
 const fightButton = document.getElementById("fight");
 let victoryLine = document.getElementById("victory_line");
-let score = document.querySelectorAll(".scoreboard-name");
-console.log(score[0].value);
-fightButton.addEventListener("click", whoWon); // sets the FIGHT button to trigger the battle
+let playerAvatar = document.getElementById("player_choice");
+let computerAvatar = document.getElementById("computer_choice");
+let scoreboard = document.querySelectorAll(".scoreboard-name");
+let score = 0;
+scoreboard[0].innerHTML = "Player : " ;
+scoreboard[1].innerHTML = "Computer : ";
 
+/*  --------------  INITIALISATION DES AVATARS ------------------- */
+
+playerAvatar.style.backgroundImage = "url(/assets/img/question.png) ";
+computerAvatar.style.backgroundImage = "url(/assets/img/question.png) ";
+
+/* ------------------------- INITIALISATION DES EVENTLISTENERS -------------- */
+
+fightButton.addEventListener("click", whoWon); // sets the FIGHT button to trigger the battle
 
 function selectFighter(){
   // adding the event listener by looping, then for each click launch the method chooseAvatar 
   buttons.forEach(button => button.addEventListener("click", chooseAvatar) );
-  
-  
  
 }
  
 function chooseAvatar(e){// any element that was clicked on is "e"
 
     if(e.target.id =="rock"){
-        let playerAvatar = document.getElementById("player_choice");
         playerAvatar.style.backgroundImage = "url(/assets/img/rock.png) ";
         playerFighter= e.target.id; // players gets the clicked ID, for the battle
-        console.log(playerFighter);
-        
+        //remove the eventListeners from all the buttons
+        buttons.forEach(button => button.removeEventListener("click", chooseAvatar));
     }
-   else if(e.target.id=="paper"){
-        let playerAvatar = document.getElementById("player_choice");
+   else if(e.target.id=="paper"){  
         playerAvatar.style.backgroundImage = "url(/assets/img/paper.png) ";
         playerFighter= e.target.id;
-        console.log(playerFighter);
+        buttons.forEach(button => button.removeEventListener("click", chooseAvatar));
         
     }
    else if(e.target.id=="scissors"){
-        let playerAvatar = document.getElementById("player_choice");
         playerAvatar.style.backgroundImage = "url(/assets/img/scissors.png) ";
         playerFighter= e.target.id;
-        console.log(playerFighter);
+        buttons.forEach(button => button.removeEventListener("click", chooseAvatar));
         
     }
     return playerFighter;
@@ -50,7 +60,7 @@ function battle(){
    
    
    if(computerFighter =="rock"){
-    let computerAvatar = document.getElementById("computer_choice");
+    
     computerAvatar.style.backgroundImage = "url(/assets/img/rock.png) ";
     console.log(computerFighter);
     return computerFighter;
@@ -58,7 +68,7 @@ function battle(){
     
 }
     if(computerFighter=="paper"){
-    let computerAvatar = document.getElementById("computer_choice");
+    
     computerAvatar.style.backgroundImage = "url(/assets/img/paper.png) ";
     console.log(computerFighter);
     return computerFighter;
@@ -66,7 +76,7 @@ function battle(){
     
     }
     if(computerFighter=="scissors"){
-    let computerAvatar = document.getElementById("computer_choice");
+   
     computerAvatar.style.backgroundImage = "url(/assets/img/scissors.png) ";
     console.log(computerFighter);
     return computerFighter;
@@ -83,59 +93,90 @@ function whoWon(){
         console.log("DRAW !");
         let winner = "Nobody";
         victoryLine.textContent+= winner;
+        addScore(winner);
+        return winner;
         
     }
     else if(playerFighter=="rock" && computerFighter=="paper"){
         console.log("Computer wins !");
         let winner = "Computer";
         victoryLine.textContent+= winner+ "!";
+        addScore(winner);
+        return winner;
     }
     else if(playerFighter=="rock" && computerFighter=="scissors"){
         console.log("Player Wins !");
         let winner = "Player";
         victoryLine.textContent+= winner + "!";
+        addScore(winner);
+        return winner;
     }
     else if(playerFighter=="paper" && computerFighter=="rock"){
         console.log("Player Wins !");
         let winner = "Player";
         victoryLine.textContent+= winner+ "!";
+        addScore(winner);
+        return winner;
     }
     else if(playerFighter=="paper" && computerFighter=="paper"){
         console.log("DRAW !");
         let winner = "Nobody";
         victoryLine.textContent+= winner+ "!";
+        addScore(winner);
+        return winner;
     }
     else if(playerFighter=="paper" && computerFighter=="scissors"){
         console.log("Computer wins !");
         let winner = "Computer";
         victoryLine.textContent+= winner+ "!";
+        addScore(winner);
+        return winner;
         
     }
     else if(playerFighter=="scissors" && computerFighter=="rock"){
         console.log("Computer wins !");
         let winner = "Computer";
         victoryLine.textContent+= winner+ "!";
+        addScore(winner);
+        return winner;
         
     }
     else if(playerFighter=="scissors" && computerFighter=="paper"){
         console.log("Player wins !");
         let winner = "Player";
         victoryLine.textContent+= winner+ "!";
+        addScore(winner);
+        return winner;
         
     }
     else if(playerFighter=="scissors" && computerFighter=="scissors"){
         console.log("DRAW !");
         let winner = "Nobody";
         victoryLine.textContent+= winner+ "!";
+        addScore(winner);
+        return winner;
         
     }
     else{
         console.log("whoWon not working");
-        console.log(playerFighter.value);
-        console.log(computerFighter.value);
+    
     }
 }
+function addScore(winner){
+    console.log("winner is " + winner);
+        if(winner == "Computer"){
+            score = 10;
+            scoreboard[1].textContent += parseInt(score);
+        }
+        else if(winner =="Player"){
+            score = 10;
+            scoreboard[0].textContent += parseInt(score);
+        }
+}
+function game() {
+    selectFighter();
+    battle();
+    
+}
 
-selectFighter();
-battle();
-
+game();
