@@ -12,6 +12,7 @@ let scoreboard = document.querySelectorAll(".scoreboard-name");
 let scoreOfPlayer = document.getElementById("scorePlayer").value;
 let scoreOfComputer = document.getElementById("scoreComputer").value;
 let score = 10;
+
 scoreOfPlayer = 0;
 scoreOfComputer = 0;
 scoreboard[0].innerHTML = "Player : " + scoreOfPlayer;
@@ -24,7 +25,6 @@ computerAvatar.style.backgroundImage = "url(/assets/img/question.png) ";
 
 /* ------------------------- INITIALISATION DES EVENTLISTENERS -------------- */
 
-fightButton.addEventListener("click", whoWon); // sets the FIGHT button to trigger the battle
 
 function selectFighter(){
   // adding the event listener by looping, then for each click launch the method chooseAvatar 
@@ -33,23 +33,28 @@ function selectFighter(){
 }
  
 function chooseAvatar(e){// any element that was clicked on is "e"
+    computerAvatar.style.backgroundImage = "url(/assets/img/question.png) ";
 
     if(e.target.id =="rock"){
         playerAvatar.style.backgroundImage = "url(/assets/img/rock.png) ";
         playerFighter= e.target.id; // players gets the clicked ID, for the battle
         //remove the eventListeners from all the buttons
         buttons.forEach(button => button.removeEventListener("click", chooseAvatar));
+        setTimeout(() => {  computerChoice(); }, 1000);
     }
    else if(e.target.id=="paper"){  
         playerAvatar.style.backgroundImage = "url(/assets/img/paper.png) ";
         playerFighter= e.target.id;
         buttons.forEach(button => button.removeEventListener("click", chooseAvatar));
+        setTimeout(() => {  computerChoice(); }, 1000);
         
     }
    else if(e.target.id=="scissors"){
         playerAvatar.style.backgroundImage = "url(/assets/img/scissors.png) ";
         playerFighter= e.target.id;
         buttons.forEach(button => button.removeEventListener("click", chooseAvatar));
+
+        setTimeout(() => {  computerChoice(); }, 1000);
         
     }
     return playerFighter;
@@ -66,7 +71,7 @@ function computerChoice(){
    if(computerFighter =="rock"){
     
     computerAvatar.style.backgroundImage = "url(/assets/img/rock.png) ";
-    console.log(computerFighter);
+    buttonTimer();
     return computerFighter;
     
     
@@ -74,15 +79,14 @@ function computerChoice(){
     if(computerFighter=="paper"){
     
     computerAvatar.style.backgroundImage = "url(/assets/img/paper.png) ";
-    console.log(computerFighter);
+    buttonTimer();
     return computerFighter;
     
     
     }
     if(computerFighter=="scissors"){
-   
+    buttonTimer();
     computerAvatar.style.backgroundImage = "url(/assets/img/scissors.png) ";
-    console.log(computerFighter);
     return computerFighter;
     
     
@@ -187,9 +191,23 @@ function addScore(winner){
          
         }
 }
+
+    function buttonTimer(){
+        setTimeout(() => { fightButton.textContent = 3; }, 100);
+        setTimeout(() => { fightButton.textContent = 2; }, 1000);
+       setTimeout(() => { fightButton.textContent = 1; }, 2000);
+       setTimeout(() => { fightButton.textContent = "FIGHT"; }, 2500);
+       setTimeout(() => { fightButton.addEventListener("click", whoWon); }, 2500);
+        // sets the FIGHT button to trigger the battle
+      
+   }
+
+
+
+
 function game() {
     selectFighter();
-    //computerChoice();
+    
 
     
 }
