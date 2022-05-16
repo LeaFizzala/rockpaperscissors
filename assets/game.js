@@ -4,7 +4,7 @@
 
 const buttons = document.querySelectorAll(".btn-choice");//select all the buttons elements
 const tableChoice = ["rock", "paper", "scissors"];
-const fightButton = document.getElementById("fight");
+
 let victoryLine = document.getElementById("victory_line");
 let playerAvatar = document.getElementById("player_choice");
 let computerAvatar = document.getElementById("computer_choice");
@@ -71,7 +71,7 @@ function computerChoice(){
    if(computerFighter =="rock"){
     
     computerAvatar.style.backgroundImage = "url(/assets/img/rock.png) ";
-    buttonTimer();
+    whoWon();
     return computerFighter;
     
     
@@ -79,14 +79,15 @@ function computerChoice(){
     if(computerFighter=="paper"){
     
     computerAvatar.style.backgroundImage = "url(/assets/img/paper.png) ";
-    buttonTimer();
+    whoWon();
     return computerFighter;
     
     
     }
     if(computerFighter=="scissors"){
-    buttonTimer();
+    // buttonTimer();
     computerAvatar.style.backgroundImage = "url(/assets/img/scissors.png) ";
+    whoWon();
     return computerFighter;
     
     
@@ -181,33 +182,34 @@ function addScore(winner){
         if(winner == "Computer"){
             
             scoreOfComputer+=score;
+            console.log("WTF ?" + scoreOfComputer);
             scoreboard[1].innerHTML = "Computer : " + scoreOfComputer;
         
           
         }
         else if(winner =="Player"){
             scoreOfPlayer+=score;
+            console.log("WTF ?" + scoreOfPlayer);
             scoreboard[0].innerHTML = "Player : " + scoreOfPlayer;
          
         }
 }
 
-    function buttonTimer(){
-        setTimeout(() => { fightButton.textContent = 3; }, 100);
-        setTimeout(() => { fightButton.textContent = 2; }, 1000);
-       setTimeout(() => { fightButton.textContent = 1; }, 2000);
-       setTimeout(() => { fightButton.textContent = "FIGHT"; }, 2500);
-       setTimeout(() => { fightButton.addEventListener("click", whoWon); }, 2500);
-        // sets the FIGHT button to trigger the battle
+//     function buttonTimer(){
+//         setTimeout(() => { fightButton.textContent = 3; }, 100);
+//         setTimeout(() => { fightButton.textContent = 2; }, 1000);
+//        setTimeout(() => { fightButton.textContent = 1; }, 2000);
+//        setTimeout(() => { fightButton.textContent = "FIGHT"; }, 2500);
+//        setTimeout(() => { fightButton.addEventListener("click", whoWon); }, 2500);
+//         // sets the FIGHT button to trigger the battle
       
-   }
+//    }
 
 
 
 
 function game() {
-    selectFighter();
-    
+    selectFighter();  
 
     
 }
