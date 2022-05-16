@@ -9,9 +9,13 @@ let victoryLine = document.getElementById("victory_line");
 let playerAvatar = document.getElementById("player_choice");
 let computerAvatar = document.getElementById("computer_choice");
 let scoreboard = document.querySelectorAll(".scoreboard-name");
-let score = 0;
-scoreboard[0].innerHTML = "Player : " ;
-scoreboard[1].innerHTML = "Computer : ";
+let scoreOfPlayer = document.getElementById("scorePlayer").value;
+let scoreOfComputer = document.getElementById("scoreComputer").value;
+let score = 10;
+scoreOfPlayer = 0;
+scoreOfComputer = 0;
+scoreboard[0].innerHTML = "Player : " + scoreOfPlayer;
+scoreboard[1].innerHTML = "Computer : " + scoreOfComputer;
 
 /*  --------------  INITIALISATION DES AVATARS ------------------- */
 
@@ -54,7 +58,7 @@ function chooseAvatar(e){// any element that was clicked on is "e"
     return Math.floor(Math.random() * max);
   }
 
-function battle(){
+function computerChoice(){
    let computerChoice = getRandomInt(3);
    computerFighter = tableChoice[computerChoice];
    
@@ -94,6 +98,7 @@ function whoWon(){
         let winner = "Nobody";
         victoryLine.textContent+= winner;
         addScore(winner);
+        game();
         return winner;
         
     }
@@ -102,6 +107,7 @@ function whoWon(){
         let winner = "Computer";
         victoryLine.textContent+= winner+ "!";
         addScore(winner);
+        game();
         return winner;
     }
     else if(playerFighter=="rock" && computerFighter=="scissors"){
@@ -109,6 +115,7 @@ function whoWon(){
         let winner = "Player";
         victoryLine.textContent+= winner + "!";
         addScore(winner);
+        game();
         return winner;
     }
     else if(playerFighter=="paper" && computerFighter=="rock"){
@@ -116,6 +123,7 @@ function whoWon(){
         let winner = "Player";
         victoryLine.textContent+= winner+ "!";
         addScore(winner);
+        game();
         return winner;
     }
     else if(playerFighter=="paper" && computerFighter=="paper"){
@@ -123,6 +131,7 @@ function whoWon(){
         let winner = "Nobody";
         victoryLine.textContent+= winner+ "!";
         addScore(winner);
+        game();
         return winner;
     }
     else if(playerFighter=="paper" && computerFighter=="scissors"){
@@ -130,6 +139,7 @@ function whoWon(){
         let winner = "Computer";
         victoryLine.textContent+= winner+ "!";
         addScore(winner);
+        game();
         return winner;
         
     }
@@ -138,6 +148,7 @@ function whoWon(){
         let winner = "Computer";
         victoryLine.textContent+= winner+ "!";
         addScore(winner);
+        game();
         return winner;
         
     }
@@ -146,6 +157,7 @@ function whoWon(){
         let winner = "Player";
         victoryLine.textContent+= winner+ "!";
         addScore(winner);
+        game();
         return winner;
         
     }
@@ -154,28 +166,31 @@ function whoWon(){
         let winner = "Nobody";
         victoryLine.textContent+= winner+ "!";
         addScore(winner);
+        game();
         return winner;
         
     }
-    else{
-        console.log("whoWon not working");
     
-    }
 }
 function addScore(winner){
     console.log("winner is " + winner);
         if(winner == "Computer"){
-            score = 10;
-            scoreboard[1].textContent += parseInt(score);
+            
+            scoreOfComputer+=score;
+            scoreboard[1].innerHTML = "Computer : " + scoreOfComputer;
+        
+          
         }
         else if(winner =="Player"){
-            score = 10;
-            scoreboard[0].textContent += parseInt(score);
+            scoreOfPlayer+=score;
+            scoreboard[0].innerHTML = "Player : " + scoreOfPlayer;
+         
         }
 }
 function game() {
     selectFighter();
-    battle();
+    //computerChoice();
+
     
 }
 
