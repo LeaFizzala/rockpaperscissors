@@ -1,16 +1,41 @@
+@font-face {
+    font-family: 'act_of_rejectionregular';
+    src: url('/assets/fonts/act_of_rejection-webfont.woff2') format('woff2'),
+         url('/assets/fonts/act_of_rejection-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
 *{
     margin:0;
     padding:0;
     box-sizing: border-box;
-    /* border: 1px solid red; */
+   /* border: 1px solid red; */
     width:100%;
 }
 :root{
-    --primary:#F2BB16;
-    --color-btn:#283FA8;
-    --color-btn-2:#6C84F5;
-    --color-btn-3:#253B73;
-    --color-btn-4:#F5D36C;
+    --primary:#6ded8a;
+    --color-btn:#ff5f85;
+    --color-btn-2:#ed3833;
+    --color-btn-3:#3EF097;
+    --color-btn-4:#f0f14e;
+    --color-avatar : #f0f14e;
+    --text-color : #1645f5;
+    --button-background: #92CD41;
+    --sec-button-background: #76c442;
+    --shadow-color:  #4AA52E;
+
+    --alt-button-background: #F7D51D;
+    --alt-sec-button-background: #F2C409;
+    --alt-shadow-color:  #E59400;
+
+    --reset-button-background: #E76E55;
+    --reset-sec-button-background: #CE372B;
+    --reset-shadow-color:  #8C2022;
+
+    --outline-width : 6px;
 }
 body{
     padding:2rem 5rem;
@@ -23,13 +48,47 @@ header{
     margin: 0rem 5rem;
 }
 main{
+    margin:5rem;
     display:flex;
     flex-wrap: wrap;
+    color : var(--text-color);
 }
+.invisible{
+    display:none;
+}
+
+/* ------- WELCOME PAGE ------- */
+
+
 h1{
     
-    font-family: 'Permanent Marker', cursive, sans-serif;
+    font-family:'act_of_rejectionregular', sans-serif;
+    font-size: 7rem;
+    margin: 4rem auto;
+    background-image: linear-gradient(0deg, #000,#F22E2E 40%, #C21B10);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent;
+   
 }
+h2{
+    color : var(--text-color);
+    font-family: 'Permanent Marker', sans-serif;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+header p {
+   
+    font-family: 'Permanent Marker', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+
+
 /* BUTTONS */
 
 #btn_select{
@@ -44,7 +103,6 @@ h1{
 .btn-choice{
     height:6rem;
     margin:2rem 0rem;
-    border: 2px solid var(--color-btn);
     border-radius: 6px;
     background-color: var(--color-btn-2);
     color: var(--color-btn-4);
@@ -70,7 +128,7 @@ h1{
 .render-box{
     height:10rem;
     width:10rem;
-    border: 2px solid #000;
+    border: 2px solid var(--color-btn-4);
     background-size: contain;
     
 }
@@ -82,18 +140,20 @@ h1{
     border:none;
 }
 #player_choice{
-    background-color: #FFE28A;
+    background-color: var(--color-avatar);
     background-size: contain;
     background-repeat: no-repeat ;
     background-position: center;
     box-shadow: 5px 5px 2px 1px rgba(0, 0, 255, .2);
+    padding : 100px;
 }
 #computer_choice{
-    background-color: #FFE28A;
+    background-color: var(--color-avatar);
     background-size: contain;
     background-repeat: no-repeat ;
     background-position: center;
     box-shadow: 5px 5px 2px 1px rgba(0, 0, 255, .2);
+    padding : 100px;
 }
 
 

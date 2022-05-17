@@ -7,10 +7,14 @@ const tableChoice = ["rock", "paper", "scissors"];
 
 let victoryLine = document.getElementById("victory_line");
 let playerAvatar = document.getElementById("player_choice");
+let playerFighter;
 let computerAvatar = document.getElementById("computer_choice");
 let scoreboard = document.querySelectorAll(".scoreboard-name");
 let scoreOfPlayer = document.getElementById("scorePlayer").value;
 let scoreOfComputer = document.getElementById("scoreComputer").value;
+let startingGame = document.getElementById("startNewGame");
+let welcome = document.getElementsByTagName('header');
+let gamePage = document.getElementsByTagName('main');
 let score = 10;
 
 scoreOfPlayer = 0;
@@ -25,6 +29,7 @@ computerAvatar.style.backgroundImage = "url(/assets/img/question.png) ";
 
 /* ------------------------- INITIALISATION DES EVENTLISTENERS -------------- */
 
+startingGame.addEventListener("click", startNewGame);
 
 function selectFighter(){
   // adding the event listener by looping, then for each click launch the method chooseAvatar 
@@ -34,11 +39,10 @@ function selectFighter(){
  
 function chooseAvatar(e){// any element that was clicked on is "e"
     computerAvatar.style.backgroundImage = "url(/assets/img/question.png) ";
-
+    
     if(e.target.id =="rock"){
         playerAvatar.style.backgroundImage = "url(/assets/img/rock.png) ";
-        playerFighter= e.target.id; // players gets the clicked ID, for the battle
-        //remove the eventListeners from all the buttons
+        playerFighter= e.target.id; 
         buttons.forEach(button => button.removeEventListener("click", chooseAvatar));
         setTimeout(() => {  computerChoice(); }, 1000);
     }
@@ -85,7 +89,7 @@ function computerChoice(){
     
     }
     if(computerFighter=="scissors"){
-    // buttonTimer();
+    
     computerAvatar.style.backgroundImage = "url(/assets/img/scissors.png) ";
     whoWon();
     return computerFighter;
@@ -96,7 +100,7 @@ function computerChoice(){
 }
 function whoWon(){
     
-    victoryLine.textContent = "And the winner is :"
+    victoryLine.textContent = "And the winner is : "
 
     if(playerFighter=="rock" && computerFighter=="rock"){
         console.log("DRAW !");
@@ -112,7 +116,6 @@ function whoWon(){
         let winner = "Computer";
         victoryLine.textContent+= winner+ "!";
         addScore(winner);
-        game();
         return winner;
     }
     else if(playerFighter=="rock" && computerFighter=="scissors"){
@@ -144,7 +147,6 @@ function whoWon(){
         let winner = "Computer";
         victoryLine.textContent+= winner+ "!";
         addScore(winner);
-        game();
         return winner;
         
     }
@@ -153,7 +155,6 @@ function whoWon(){
         let winner = "Computer";
         victoryLine.textContent+= winner+ "!";
         addScore(winner);
-        game();
         return winner;
         
     }
@@ -178,40 +179,32 @@ function whoWon(){
     
 }
 function addScore(winner){
-    console.log("winner is " + winner);
+    
         if(winner == "Computer"){
             
             scoreOfComputer+=score;
-            console.log("WTF ?" + scoreOfComputer);
             scoreboard[1].innerHTML = "Computer : " + scoreOfComputer;
         
           
         }
         else if(winner =="Player"){
             scoreOfPlayer+=score;
-            console.log("WTF ?" + scoreOfPlayer);
             scoreboard[0].innerHTML = "Player : " + scoreOfPlayer;
          
         }
 }
-
-//     function buttonTimer(){
-//         setTimeout(() => { fightButton.textContent = 3; }, 100);
-//         setTimeout(() => { fightButton.textContent = 2; }, 1000);
-//        setTimeout(() => { fightButton.textContent = 1; }, 2000);
-//        setTimeout(() => { fightButton.textContent = "FIGHT"; }, 2500);
-//        setTimeout(() => { fightButton.addEventListener("click", whoWon); }, 2500);
-//         // sets the FIGHT button to trigger the battle
-      
-//    }
-
-
 
 
 function game() {
     selectFighter();  
 
     
+}
+function startNewGame(){
+    console.log("game starting")
+    console.log(welcome[0]);
+    welcome[0].classList.add("invisible");
+    gamePage[0].classList.remove("invisible");
 }
 
 game();
