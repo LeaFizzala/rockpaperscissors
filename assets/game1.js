@@ -1,5 +1,7 @@
 /* --------- DECLARATION DES VARIABLES ------------ */
 
+
+
 const buttons = document.querySelectorAll(".btn-choice");//select all the buttons elements
 const tableChoice = ["rock", "paper", "scissors"];
 
@@ -31,35 +33,30 @@ startingGame.addEventListener("click", startNewGame);
 
 function selectFighter(){
   // adding the event listener by looping, then for each click launch the method chooseAvatar 
-  console.log("Entering selectFighterFunction....");
-  let rock = document.getElementById("rock");
-  console.log(rock);
-  rock.addEventListener("click", chooseAvatar);
-  //document.querySelectorAll(".btn-choice").forEach(button => button.addEventListener("click", chooseAvatar) );
+  buttons.forEach(button => button.addEventListener("click", chooseAvatar) );
  
 }
  
 function chooseAvatar(e){// any element that was clicked on is "e"
-    console.log("Entering ChooseAvatar")
     computerAvatar.style.backgroundImage = "url(/assets/img/question.png) ";
     
     if(e.target.id =="rock"){
         playerAvatar.style.backgroundImage = "url(/assets/img/rock.png) ";
         playerFighter= e.target.id; 
-       // buttons.forEach(button => button.removeEventListener("click", chooseAvatar));
+        buttons.forEach(button => button.removeEventListener("click", chooseAvatar));
         setTimeout(() => {  computerChoice(); }, 1000);
     }
    else if(e.target.id=="paper"){  
         playerAvatar.style.backgroundImage = "url(/assets/img/paper.png) ";
         playerFighter= e.target.id;
-        //buttons.forEach(button => button.removeEventListener("click", chooseAvatar));
+        buttons.forEach(button => button.removeEventListener("click", chooseAvatar));
         setTimeout(() => {  computerChoice(); }, 1000);
         
     }
    else if(e.target.id=="scissors"){
         playerAvatar.style.backgroundImage = "url(/assets/img/scissors.png) ";
         playerFighter= e.target.id;
-      //  buttons.forEach(button => button.removeEventListener("click", chooseAvatar));
+        buttons.forEach(button => button.removeEventListener("click", chooseAvatar));
 
         setTimeout(() => {  computerChoice(); }, 1000);
         
@@ -77,7 +74,7 @@ function computerChoice(){
    
    if(computerFighter =="rock"){
     
-    computerAvatar.style.backgroundImage = "url(./assets/img/rock.png) ";
+    computerAvatar.style.backgroundImage = "url(/assets/img/rock.png) ";
     whoWon();
     return computerFighter;
     
@@ -85,7 +82,7 @@ function computerChoice(){
 }
     if(computerFighter=="paper"){
     
-    computerAvatar.style.backgroundImage = url("./assets/img/paper.png") ;
+    computerAvatar.style.backgroundImage = "url(/assets/img/paper.png) ";
     whoWon();
     return computerFighter;
     
@@ -93,7 +90,7 @@ function computerChoice(){
     }
     if(computerFighter=="scissors"){
     
-    computerAvatar.style.backgroundImage = url("./assets/img/scissors.png") ;
+    computerAvatar.style.backgroundImage = "url(/assets/img/scissors.png) ";
     whoWon();
     return computerFighter;
     
@@ -208,7 +205,6 @@ function startNewGame(){
     console.log(welcome[0]);
     welcome[0].classList.add("invisible");
     gamePage[0].classList.remove("invisible");
-    selectFighter();
 }
-// selectFighter();
-// game();
+
+game();
